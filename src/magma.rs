@@ -1,7 +1,8 @@
 use std::ops::{Add};
 
-/// A Magma defines a binary operation 'add' over type `T`
-/// such that the operation is closed.
+/// A Magma defines a binary operation 'add' (denoted hereafter by `+`)
+/// over type `T` with the following properties:
+/// * `+` is closed over type `T`
 pub trait Magma<T>: Add<T, Output=T> {}
 
 #[cfg(test)]
