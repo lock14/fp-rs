@@ -18,9 +18,11 @@ pub trait UnitalMagma<T>: Magma<T> {
 //[identity element] on T
 #[cfg(test)]
 mod tests {
-    use rand::Rng;
     use super::*;
-    impl UnitalMagma<i32> for i32 { const IDENTITY: i32 = 0; }
+    use rand::Rng;
+    impl UnitalMagma<i32> for i32 {
+        const IDENTITY: i32 = 0;
+    }
 
     #[test]
     fn identity_element_is_left_identity() {
