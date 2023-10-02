@@ -2,7 +2,7 @@ use std::ops::Add;
 
 /// A Magma defines a binary operation 'add' (denoted hereafter by `+`)
 /// over type `T` with the following properties:
-/// * `+` is closed over type `T`
+/// * `+` is [closed](https://proofwiki.org/wiki/Definition:Closure_(Abstract_Algebra)/Algebraic_Structure) over type `T`
 pub trait Magma<T>: Add<T, Output = T> {}
 
 #[cfg(test)]
