@@ -23,14 +23,14 @@ mod tests {
     impl UnitalMagma<i32> for i32 { const IDENTITY: i32 = 0; }
 
     #[test]
-    fn idenenty_element_is_left_identity() {
+    fn identity_element_is_left_identity() {
         let mut rng = rand::thread_rng();
         let random_val = rng.gen_range(-100..=100);
         assert_eq!(i32::IDENTITY + random_val, random_val)
     }
 
     #[test]
-    fn idenenty_element_is_right_identity() {
+    fn identity_element_is_right_identity() {
         let mut rng = rand::thread_rng();
         let random_val = rng.gen_range(-100..=100);
         assert_eq!(random_val + i32::IDENTITY, random_val)
