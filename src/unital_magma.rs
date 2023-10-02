@@ -29,9 +29,15 @@ mod tests {
         assert_eq!(i32::identity_element() + random_val, random_val)
     }
 
+    #[test]
     fn idenenty_element_is_right_identity() {
         let mut rng = rand::thread_rng();
         let random_val = rng.gen_range(-100..=100);
         assert_eq!(random_val + i32::identity_element(), random_val)
+    }
+
+    #[test]
+    fn identity_element_unique() {
+        assert_eq!(i32::identity_element(), i32::identity_element())
     }
 }
