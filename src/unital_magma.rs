@@ -11,8 +11,8 @@ use crate::magma::Magma;
 /// * `e` is both a [left identity](https://proofwiki.org/wiki/Definition:Identity_(Abstract_Algebra)/Left_Identity)
 /// and a [right identity](https://proofwiki.org/wiki/Definition:Identity_(Abstract_Algebra)/Right_Identity)
 /// under `+`
-pub trait UnitalMagma<T>: Magma<T> {
-    const IDENTITY: T;
+pub trait UnitalMagma: Magma {
+    const IDENTITY: Self;
 }
 
 //[identity element] on T
@@ -20,7 +20,7 @@ pub trait UnitalMagma<T>: Magma<T> {
 mod tests {
     use super::*;
     use rand::Rng;
-    impl UnitalMagma<i32> for i32 {
+    impl UnitalMagma for i32 {
         const IDENTITY: i32 = 0;
     }
 
