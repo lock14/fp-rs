@@ -12,7 +12,7 @@ use crate::magma::Magma;
 /// and a [right identity](https://proofwiki.org/wiki/Definition:Identity_(Abstract_Algebra)/Right_Identity)
 /// under `+`
 pub trait UnitalMagma<T>: Magma<T> {
-    fn identity_element() -> T;
+    const IDENTITY: T;
 }
 
 //[identity element] on T
@@ -20,24 +20,19 @@ pub trait UnitalMagma<T>: Magma<T> {
 mod tests {
     use rand::Rng;
     use super::*;
-    impl UnitalMagma<i32> for i32 { fn identity_element() -> i32 { 0 } }
+    impl UnitalMagma<i32> for i32 { const IDENTITY: i32 = 0; }
 
     #[test]
     fn idenenty_element_is_left_identity() {
         let mut rng = rand::thread_rng();
         let random_val = rng.gen_range(-100..=100);
-        assert_eq!(i32::identity_element() + random_val, random_val)
+        assert_eq!(i32::IDENTITY + random_val, random_val)
     }
 
     #[test]
     fn idenenty_element_is_right_identity() {
         let mut rng = rand::thread_rng();
         let random_val = rng.gen_range(-100..=100);
-        assert_eq!(random_val + i32::identity_element(), random_val)
-    }
-
-    #[test]
-    fn identity_element_unique() {
-        assert_eq!(i32::identity_element(), i32::identity_element())
+        assert_eq!(random_val + i32::IDENTITY, random_val)
     }
 }
