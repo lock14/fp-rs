@@ -3,14 +3,18 @@ use std::ops::Add;
 /// A Magma defines a binary operation 'add' (denoted hereafter by `+`)
 /// over type `T` with the following properties:
 /// * `+` is [closed](https://proofwiki.org/wiki/Definition:Closure_(Abstract_Algebra)/Algebraic_Structure) over type `T`
-pub trait Magma<T>: Add<T, Output = T> {}
+pub trait Magma: Add<Self, Output = Self>
+where
+    Self: Sized + PartialEq + Copy,
+{
+}
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
     // implement Magma for type i32
-    impl Magma<i32> for i32 {}
+    impl Magma for i32 {}
 
     // define custom struct and implement Magma
     #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -18,15 +22,15 @@ mod tests {
         x: i32,
     }
 
-    impl Add for Foo {
+    impl Add<Self> for Foo {
         type Output = Foo;
 
-        fn add(self, rhs: Foo) -> Foo {
+        fn add(self, rhs: Self) -> Self::Output {
             return Foo { x: self.x + rhs.x };
         }
     }
 
-    impl Magma<Foo> for Foo {}
+    impl Magma for Foo {}
 
     #[test]
     fn i32_is_a_magma() {
