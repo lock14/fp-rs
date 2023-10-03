@@ -14,14 +14,54 @@ pub trait UnitalMagma: Magma {
     const IDENTITY: Self;
 }
 
+impl UnitalMagma for f32 {
+    const IDENTITY: Self = 0.0;
+}
+impl UnitalMagma for f64 {
+    const IDENTITY: Self = 0.0;
+}
+impl UnitalMagma for i8 {
+    const IDENTITY: Self = 0;
+}
+impl UnitalMagma for i16 {
+    const IDENTITY: Self = 0;
+}
+impl UnitalMagma for i32 {
+    const IDENTITY: Self = 0;
+}
+impl UnitalMagma for i64 {
+    const IDENTITY: Self = 0;
+}
+impl UnitalMagma for i128 {
+    const IDENTITY: Self = 0;
+}
+impl UnitalMagma for isize {
+    const IDENTITY: Self = 0;
+}
+impl UnitalMagma for u8 {
+    const IDENTITY: Self = 0;
+}
+impl UnitalMagma for u16 {
+    const IDENTITY: Self = 0;
+}
+impl UnitalMagma for u32 {
+    const IDENTITY: Self = 0;
+}
+impl UnitalMagma for u64 {
+    const IDENTITY: Self = 0;
+}
+impl UnitalMagma for u128 {
+    const IDENTITY: Self = 0;
+}
+impl UnitalMagma for usize {
+    const IDENTITY: Self = 0;
+}
+
 //[identity element] on T
 #[cfg(test)]
 mod tests {
     use super::*;
     use rand::Rng;
-    impl UnitalMagma for i32 {
-        const IDENTITY: i32 = 0;
-    }
 
     #[test]
     fn identity_element_is_left_identity() {

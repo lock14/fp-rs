@@ -9,12 +9,27 @@ where
 {
 }
 
+// implement Magma for types that implement Add
+// https://doc.rust-lang.org/std/ops/trait.Add.html#implementors
+
+impl Magma for f32 {}
+impl Magma for f64 {}
+impl Magma for i8 {}
+impl Magma for i16 {}
+impl Magma for i32 {}
+impl Magma for i64 {}
+impl Magma for i128 {}
+impl Magma for isize {}
+impl Magma for u8 {}
+impl Magma for u16 {}
+impl Magma for u32 {}
+impl Magma for u64 {}
+impl Magma for u128 {}
+impl Magma for usize {}
+
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    // implement Magma for type i32
-    impl Magma for i32 {}
 
     // define custom struct and implement Magma
     #[derive(Clone, Copy, Debug, Eq, PartialEq)]
