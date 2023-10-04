@@ -1,5 +1,9 @@
+mod associative_quasigroup;
 mod commutativity;
+mod group;
+mod r#loop;
 mod magma;
 mod monoid;
+mod quasigroup;
 mod semigroup;
 mod unital_magma;
