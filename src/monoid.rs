@@ -14,20 +14,16 @@ use crate::unital_magma::UnitalMagma;
 /// * `e` is an [identity](https://proofwiki.org/wiki/Definition:Identity_(Abstract_Algebra)/Two-Sided_Identity) under `+`.
 pub trait Monoid: UnitalMagma + Semigroup {}
 
-impl Monoid for f32 {}
-impl Monoid for f64 {}
-impl Monoid for i8 {}
-impl Monoid for i16 {}
-impl Monoid for i32 {}
-impl Monoid for i64 {}
-impl Monoid for i128 {}
-impl Monoid for isize {}
-impl Monoid for u8 {}
-impl Monoid for u16 {}
-impl Monoid for u32 {}
-impl Monoid for u64 {}
-impl Monoid for u128 {}
-impl Monoid for usize {}
+macro_rules! monoid_impl {
+    ($($t:ty)*) => ($(
+        impl Monoid for $t {}
+    )*)
+}
+
+// implement Magma for types that implement Add
+// https://doc.rust-lang.org/std/ops/trait.Add.html#implementors
+
+monoid_impl! { usize u8 u16 u32 u64 u128 isize i8 i16 i32 i64 i128 f32 f64 }
 
 #[cfg(test)]
 mod tests {

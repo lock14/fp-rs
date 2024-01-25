@@ -10,20 +10,16 @@ use crate::magma::Magma;
 /// * `+` is [associative](https://proofwiki.org/wiki/Definition:Associative_Operation).
 pub trait Semigroup: Magma {}
 
-impl Semigroup for f32 {}
-impl Semigroup for f64 {}
-impl Semigroup for i8 {}
-impl Semigroup for i16 {}
-impl Semigroup for i32 {}
-impl Semigroup for i64 {}
-impl Semigroup for i128 {}
-impl Semigroup for isize {}
-impl Semigroup for u8 {}
-impl Semigroup for u16 {}
-impl Semigroup for u32 {}
-impl Semigroup for u64 {}
-impl Semigroup for u128 {}
-impl Semigroup for usize {}
+macro_rules! semigroup_impl {
+    ($($t:ty)*) => ($(
+        impl Semigroup for $t {}
+    )*)
+}
+
+// implement Magma for types that implement Add
+// https://doc.rust-lang.org/std/ops/trait.Add.html#implementors
+
+semigroup_impl! { usize u8 u16 u32 u64 u128 isize i8 i16 i32 i64 i128 f32 f64 }
 
 #[cfg(test)]
 mod tests {
