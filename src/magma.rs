@@ -9,23 +9,16 @@ where
 {
 }
 
+macro_rules! magma_impl {
+    ($($t:ty)*) => ($(
+        impl Magma for $t {}
+    )*)
+}
+
 // implement Magma for types that implement Add
 // https://doc.rust-lang.org/std/ops/trait.Add.html#implementors
 
-impl Magma for f32 {}
-impl Magma for f64 {}
-impl Magma for i8 {}
-impl Magma for i16 {}
-impl Magma for i32 {}
-impl Magma for i64 {}
-impl Magma for i128 {}
-impl Magma for isize {}
-impl Magma for u8 {}
-impl Magma for u16 {}
-impl Magma for u32 {}
-impl Magma for u64 {}
-impl Magma for u128 {}
-impl Magma for usize {}
+magma_impl! { usize u8 u16 u32 u64 u128 isize i8 i16 i32 i64 i128 f32 f64 }
 
 #[cfg(test)]
 mod tests {
