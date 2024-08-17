@@ -14,32 +14,19 @@ where
 {
 }
 
-impl CommutativeAdd for f32 {}
-impl CommutativeAdd for f64 {}
-impl CommutativeAdd for i8 {}
-impl CommutativeAdd for i16 {}
-impl CommutativeAdd for i32 {}
-impl CommutativeAdd for i64 {}
-impl CommutativeAdd for i128 {}
-impl CommutativeAdd for isize {}
-impl CommutativeAdd for u8 {}
-impl CommutativeAdd for u16 {}
-impl CommutativeAdd for u32 {}
-impl CommutativeAdd for u64 {}
-impl CommutativeAdd for u128 {}
-impl CommutativeAdd for usize {}
+macro_rules! commutative_add_impl {
+    ($($t:ty)*) => ($(
+        impl CommutativeAdd for $t {}
+    )*)
+}
 
-impl CommutativeMul for f32 {}
-impl CommutativeMul for f64 {}
-impl CommutativeMul for i8 {}
-impl CommutativeMul for i16 {}
-impl CommutativeMul for i32 {}
-impl CommutativeMul for i64 {}
-impl CommutativeMul for i128 {}
-impl CommutativeMul for isize {}
-impl CommutativeMul for u8 {}
-impl CommutativeMul for u16 {}
-impl CommutativeMul for u32 {}
-impl CommutativeMul for u64 {}
-impl CommutativeMul for u128 {}
-impl CommutativeMul for usize {}
+macro_rules! commutative_mul_impl {
+    ($($t:ty)*) => ($(
+        impl CommutativeMul for $t {}
+    )*)
+}
+
+// implement Group and AbelianGroup for types that implement Add
+// https://doc.rust-lang.org/std/ops/trait.Add.html#implementors
+commutative_add_impl! {f32 f64 i8 i16 i32 i64 i128 isize u8 u16 u32 u64 u128 usize}
+commutative_mul_impl! {f32 f64 i8 i16 i32 i64 i128 isize u8 u16 u32 u64 u128 usize}
