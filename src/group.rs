@@ -14,18 +14,13 @@ macro_rules! group_impl {
     )*)
 }
 
-// implement Magma for types that implement Add
-// https://doc.rust-lang.org/std/ops/trait.Add.html#implementors
-
-group_impl! { isize i8 i16 i32 i64 i128 f32 f64 }
-
 macro_rules! abelian_group_impl {
     ($($t:ty)*) => ($(
         impl AbelianGroup for $t {}
     )*)
 }
 
-// implement Magma for types that implement Add
+// implement Group and AbelianGroup for types that implement Add
 // https://doc.rust-lang.org/std/ops/trait.Add.html#implementors
-
+group_impl! { isize i8 i16 i32 i64 i128 f32 f64 }
 abelian_group_impl! { isize i8 i16 i32 i64 i128 f32 f64 }

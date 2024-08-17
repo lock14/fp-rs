@@ -17,7 +17,6 @@ macro_rules! magma_impl {
 
 // implement Magma for types that implement Add
 // https://doc.rust-lang.org/std/ops/trait.Add.html#implementors
-
 magma_impl! { usize u8 u16 u32 u64 u128 isize i8 i16 i32 i64 i128 f32 f64 }
 
 #[cfg(test)]
